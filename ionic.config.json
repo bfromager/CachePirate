@@ -1,0 +1,7 @@
+{
+  "name": "CachePirate",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
