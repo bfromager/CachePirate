@@ -1,4 +1,4 @@
-import {debugMatrix, Matrix} from './matrix';
+import {debugMatrixArray, Matrix} from './matrix';
 
 export type Case = Matrix<number>;
 
@@ -15,14 +15,9 @@ export class Plateau {
 
     setCases(cases: Case[]) {
         this._cases = cases;
-        this.debugPlateau();
-    }
-
-    private debugPlateau() {
-        console.log("");
-        for (let _case of this._cases) {
-            debugMatrix(_case);
-        }
+        // console.log("");
+        // debugMatrixArray([this._cases[0],this._cases[1]]);
+        // debugMatrixArray([this._cases[2],this._cases[3]]);
     }
 
 }

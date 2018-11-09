@@ -1,14 +1,6 @@
 export type Matrix<T> = T[][];
 
 export function debugMatrix<T>(matrix: Matrix<T>) {
-    // console.log("");
-    // for (let row of matrix) {
-    //     let S = "";
-    //     for (let col of row) {
-    //         S +=  (S == "" ? "" : " ") + col.toString();
-    //     }
-    //     console.log(S);
-    // }
     debugMatrixArray([matrix]);
 }
 

@@ -21,21 +21,17 @@ arrangements("", (1,2,3,4,5,6), 3);
 import {Mask, Piece} from './piece';
 import {debugMatrix, debugMatrixArray} from './matrix';
 
-export class PiecesService {
-    public _pieces: Piece[];
+export class ArrangementService {
 
-    public getArrangement(): any[] {
+    public getArrangement(pieces: Piece[], k: number): any[] {
         let result = [];
-        this.arrange(this._pieces, this._pieces.length, [], result);
+        this.arrange(pieces, k, [], result);
         return result;
     }
 
     private arrange(remainList: any[], k, usedList: any[], resultList: any[]) {
         if (k == 0) {
             resultList.push(usedList);
-            // console.log(usedList);
-            console.log("-----------");
-            debugMatrixArray(usedList);
         } else {
             for (let p=0; p < remainList.length; ++p) {
                 let masks : Mask[] = remainList[p].getPositions();

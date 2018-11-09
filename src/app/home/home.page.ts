@@ -6,8 +6,9 @@
 import { Component } from '@angular/core';
 import {Piece} from '../services/piece';
 import {Plateau} from '../services/plateau';
-import {compareMatrix, debugMatrix, Matrix, rotateMatrix} from '../services/matrix';
-import {PiecesService} from '../services/pieces.service';
+import {compareMatrix, debugMatrix, debugMatrixArray, Matrix, rotateMatrix} from '../services/matrix';
+import {ArrangementService} from '../services/arrangements.service';
+import {SolutionsService} from '../services/solutions.service';
 
 @Component({
   selector: 'app-home',
@@ -22,22 +23,6 @@ export class HomePage {
         // let c: boolean = true;
         // let d: boolean = false;
         // console.log(a && c, b && d, c && a, d && b);
-
-        // let piece = new Piece([0,1,2,3,4,5,6,7,8]);
-        // console.log("------------");
-        // piece.setMask([0,0,0,0,0,0,0,0,8]);
-        // console.log("------------");
-        // piece.setMask([1,0,0,0,0,0,0,0,8]);
-        // console.log("------------");
-        // piece.setMask([1,0,0,0,1,0,0,0,8]);
-        //
-        // let plateau = new Plateau( [
-        //     [0,1,2,3,4,5,6,7,8],
-        //     [0,1,2,3,4,5,6,7,8],
-        //     [0,1,2,3,4,5,6,7,8],
-        //     [0,1,2,3,4,5,6,7,8]
-        //     ]
-        // );
 
         // // let m: Matrix<number> = [[11,12,13,14,15], [21,22,23,24,25], [31,32,33,34,35],[41,42,43,44,45],[51,52,53,54,55]];
         // let m: Matrix<number> = [[11,12,13], [21,22,23], [31,32,33]];
@@ -56,14 +41,6 @@ export class HomePage {
         // debugMatrix(m4);
         // console.log(compareMatrix(m,m4));
 
-        // let plateau = new Plateau( [
-        //     [[111,112,113],[121,122,123],[131,132,133]],
-        //     [[211,212,213],[221,222,223],[231,232,233]],
-        //     [[311,312,313],[321,322,323],[331,332,333]],
-        //     [[411,412,413],[421,422,423],[431,432,433]]
-        //     ]
-        // );
-        //
         // let piece = new Piece([
         //     [0,1,2],
         //     [3,4,5],
@@ -76,14 +53,25 @@ export class HomePage {
         // console.log("------------");
         // piece.setMask([[1,0,0], [0,8,0], [0,0,1]]);
 
+        let plateau = new Plateau( [
+            [[111,112,113],[121,122,123],[131,132,133]],
+            [[211,212,213],[221,222,223],[231,232,233]],
+            // [[311,312,313],[321,322,323],[331,332,333]],
+            // [[411,412,413],[421,422,423],[431,432,433]]
+            ]
+        );
 
-        let piecesService = new PiecesService();
-        piecesService._pieces = [
+        let pieces: Piece[] = [
             // new Piece([[1,0,0], [0,8,0], [0,0,1]]),
             // new Piece([[1,0,0], [0,8,0], [0,0,1]]),
-            new Piece([[1,0,0], [0,8,0], [0,0,1]]),
             new Piece([[1,0,0], [0,8,0], [0,0,0]]),
+            new Piece([[1,0,0], [0,8,0], [0,0,0]]),
+            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
+            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
+            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
         ];
-        piecesService.getArrangement();
+
+        let solutionsService = new SolutionsService(plateau,pieces);
+
     }
 }
