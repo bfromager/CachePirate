@@ -1,11 +1,26 @@
 export type Matrix<T> = T[][];
 
 export function debugMatrix<T>(matrix: Matrix<T>) {
+    // console.log("");
+    // for (let row of matrix) {
+    //     let S = "";
+    //     for (let col of row) {
+    //         S +=  (S == "" ? "" : " ") + col.toString();
+    //     }
+    //     console.log(S);
+    // }
+    debugMatrixArray([matrix]);
+}
+
+export function debugMatrixArray<T>(matrix: Matrix<T>[]) {
     console.log("");
-    for (let row of matrix) {
+    for (let row = 0; row < matrix[0].length; ++row) {
         let S = "";
-        for (let col of row) {
-            S +=  (S == "" ? "" : " ") + col.toString();
+        for (let m of matrix) {
+            S += (S == "" ? "" : "      ");
+            for (let col of m[row]) {
+                S +=  " " + col.toString();
+            }
         }
         console.log(S);
     }
@@ -43,4 +58,17 @@ export function rotateMatrix<T>(matrix: Matrix<T>, nbQuartDeTour: number): Matri
     }
 
     return result;
+}
+
+export function compareMatrix<T>(m1: Matrix<T>, m2: Matrix<T>): boolean {
+    if (m1.length != m2.length) return false;
+    if (m1[0].length != m2[0].length) return false;
+
+    for (let row in m1) {
+        for (let col in m1[row]) {
+            if (m1[row][col] != m2[row][col]) return false;
+        }
+    }
+    return true;
+
 }
