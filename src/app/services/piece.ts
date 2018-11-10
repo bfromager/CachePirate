@@ -9,6 +9,11 @@ import {compareMatrix, debugMatrix, Matrix, rotateMatrix} from './matrix';
 
 export type Mask = Matrix<boolean>;
 
+export interface Position {
+    piece: Piece;
+    rotation: number;
+
+}
 export class Piece {
     private _mask: Mask;
     private _positions: Mask[];

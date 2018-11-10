@@ -8,7 +8,7 @@ import {Piece} from '../services/piece';
 import {Plateau} from '../services/plateau';
 import {compareMatrix, debugMatrix, debugMatrixArray, Matrix, rotateMatrix} from '../services/matrix';
 import {ArrangementService} from '../services/arrangements.service';
-import {SolutionsService} from '../services/solutions.service';
+import {Solution, SolutionsService} from '../services/solutions.service';
 
 @Component({
   selector: 'app-home',
@@ -53,25 +53,60 @@ export class HomePage {
         // console.log("------------");
         // piece.setMask([[1,0,0], [0,8,0], [0,0,1]]);
 
+        // let plateau = new Plateau( [
+        //     [[111,112,113],[121,122,123],[131,132,133]],
+        //     [[211,212,213],[221,222,223],[231,232,233]],
+        //     // [[311,312,313],[321,322,323],[331,332,333]],
+        //     // [[411,412,413],[421,422,423],[431,432,433]]
+        //     ]
+        // );
         let plateau = new Plateau( [
-            [[111,112,113],[121,122,123],[131,132,133]],
-            [[211,212,213],[221,222,223],[231,232,233]],
-            // [[311,312,313],[321,322,323],[331,332,333]],
-            // [[411,412,413],[421,422,423],[431,432,433]]
+                [   [1,0,1],
+                    [0,0,0],
+                    [2,0,3]],
+
+                [   [0,0,3],
+                    [0,4,0],
+                    [5,0,2]],
+
+                [   [4,0,2],
+                    [0,5,0],
+                    [0,0,2]],
+
+                [   [1,0,4],
+                    [0,2,0],
+                    [0,0,5]]
             ]
         );
 
         let pieces: Piece[] = [
-            new Piece([[true,false,false], [false,true,false], [false,false,true]]),
-            new Piece([[true,false,false], [false,true,false], [false,false,false]]),
-            // new Piece([[true,false,false], [false,true,false], [false,false,false]]),
-            // new Piece([[true,false,false], [false,true,false], [false,false,false]]),
+            new Piece([
+                [true,false,false],
+                [false,false,false],
+                [false,false,false]
+            ]),
+            new Piece([
+                [true,false,false],
+                [false,false,false],
+                [false,false,true]
+            ]),
+            new Piece([
+                [true,false,true],
+                [false,false,false],
+                [false,false,false]
+            ]),
+            new Piece([
+                [true,false,false],
+                [false,true,false],
+                [false,false,false]
+            ])
         ];
 
         // debugMatrixArray(pieces[0].getPositions());
 
         let solutionsService = new SolutionsService(plateau,pieces);
-        solutionsService.getSolutions();
+        let uniqueSolution: Solution[] = solutionsService.getSolutions();
+        console.log(uniqueSolution);
 
     }
 }
