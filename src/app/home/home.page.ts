@@ -16,97 +16,90 @@ import {Solution, SolutionsService} from '../services/solutions.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+    public imgs: string[] = [
+        "",
+        "assets/img/Boussole.png",
+        "assets/img/Drapeau.png",
+        "assets/img/LongueVue.png",
+        "assets/img/Bateau.png",
+        "assets/img/Carte.png",
+    ]
+
+    private _plateau = new Plateau( [
+        [   [1,0,1],
+            [0,0,0],
+            [2,0,3]
+        ],
+        [   [0,0,3],
+            [0,4,0],
+            [5,0,2]
+        ],
+        [   [4,0,2],
+            [0,5,0],
+            [0,0,2]
+        ],
+        [   [1,0,4],
+            [0,2,0],
+            [0,0,5]
+        ]
+    ]);
+
+    private _pieces: Piece[] = [
+        new Piece([
+            [true,false,false],
+            [false,false,false],
+            [false,false,false]
+        ]),
+        new Piece([
+            [true,false,false],
+            [false,false,false],
+            [false,false,true]
+        ]),
+        new Piece([
+            [true,false,true],
+            [false,false,false],
+            [false,false,false]
+        ]),
+        new Piece([
+            [true,false,false],
+            [false,true,false],
+            [false,false,false]
+        ]),
+        // new Piece([
+        //     [true,false,true],
+        //     [false,false,false],
+        //     [true,false,false]
+        // ]),
+    ];
+
+    private _uniqueSolutions: Solution[] = []
+    public display: string[][];
 
     constructor() {
-        // let a: number = 20;
-        // let b: number = 50;
-        // let c: boolean = true;
-        // let d: boolean = false;
-        // console.log(a && c, b && d, c && a, d && b);
+        let solutionsService = new SolutionsService(this._plateau,this._pieces);
+        this._uniqueSolutions = solutionsService.getSolutions();
+        console.log(this._uniqueSolutions);
+        this.updateDisplay();
+    }
 
-        // // let m: Matrix<number> = [[11,12,13,14,15], [21,22,23,24,25], [31,32,33,34,35],[41,42,43,44,45],[51,52,53,54,55]];
-        // let m: Matrix<number> = [[11,12,13], [21,22,23], [31,32,33]];
-        // // debugMatrix(m);
-        // let m1 = (rotateMatrix(m,0));
-        // let m2 = (rotateMatrix(m,1));
-        // let m3 = (rotateMatrix(m,1));
-        // let m4 = (rotateMatrix(m,1));
-        // debugMatrix(m);
-        // debugMatrix(m1);
-        // console.log(compareMatrix(m,m1));
-        // debugMatrix(m2);
-        // console.log(compareMatrix(m,m2));
-        // debugMatrix(m3);
-        // console.log(compareMatrix(m,m3));
-        // debugMatrix(m4);
-        // console.log(compareMatrix(m,m4));
+    updateDisplay() {
+        let currentProblem = this._uniqueSolutions[Math.floor( Math.random() * this._uniqueSolutions.length )];
+        this.display = [];
+        for (let i=1; i < currentProblem.imagesCount.length; ++i) {
+            let count = currentProblem.imagesCount[i];
+            if (count != 0) {
+                let line = [];
+                for (let j = 0; j< count; ++j )
+                    line.push(this.imgs[i]);
+                this.display.push(line);
+            }
+        }
+        // console.log(this.display);
+        console.log(currentProblem);
+    }
 
-        // let piece = new Piece([
-        //     [0,1,2],
-        //     [3,4,5],
-        //     [6,7,8]
-        // ]);
-        // console.log("------------");
-        // piece.setMask([[0,0,0], [0,8,0], [0,0,0]]);
-        // console.log("------------");
-        // piece.setMask([[1,0,0], [0,8,0], [0,0,0]]);
-        // console.log("------------");
-        // piece.setMask([[1,0,0], [0,8,0], [0,0,1]]);
-
-        // let plateau = new Plateau( [
-        //     [[111,112,113],[121,122,123],[131,132,133]],
-        //     [[211,212,213],[221,222,223],[231,232,233]],
-        //     // [[311,312,313],[321,322,323],[331,332,333]],
-        //     // [[411,412,413],[421,422,423],[431,432,433]]
-        //     ]
-        // );
-        let plateau = new Plateau( [
-                [   [1,0,1],
-                    [0,0,0],
-                    [2,0,3]],
-
-                [   [0,0,3],
-                    [0,4,0],
-                    [5,0,2]],
-
-                [   [4,0,2],
-                    [0,5,0],
-                    [0,0,2]],
-
-                [   [1,0,4],
-                    [0,2,0],
-                    [0,0,5]]
-            ]
-        );
-
-        let pieces: Piece[] = [
-            new Piece([
-                [true,false,false],
-                [false,false,false],
-                [false,false,false]
-            ]),
-            new Piece([
-                [true,false,false],
-                [false,false,false],
-                [false,false,true]
-            ]),
-            new Piece([
-                [true,false,true],
-                [false,false,false],
-                [false,false,false]
-            ]),
-            new Piece([
-                [true,false,false],
-                [false,true,false],
-                [false,false,false]
-            ])
-        ];
-
-        // debugMatrixArray(pieces[0].getPositions());
-
-        let solutionsService = new SolutionsService(plateau,pieces);
-        let uniqueSolution: Solution[] = solutionsService.getSolutions();
-        console.log(uniqueSolution);
-
+    contentClick() {
+        //alert("click");
+        this.updateDisplay()
     }
 }

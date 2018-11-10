@@ -9,8 +9,85 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the
-    <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content (click)="contentClick()">
+    <!--<img src="{{imgs[1]}}"><br>-->
+    <!--<img src="{{imgs[2]}}"><br>-->
+    <!--<img src="{{imgs[3]}}"><br>-->
+    <!--<img src="{{imgs[4]}}"><br>-->
+    <!--<img src="{{imgs[5]}}"><br>-->
+
+    <!--<ion-grid>-->
+        <!--<ion-row justify-content-center >-->
+            <!--<ion-col size="4">-->
+                    <!--<img src="{{imgs[1]}}">-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+
+        <!--<ion-row justify-content-center>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[2]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[2]}}">-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+
+        <!--<ion-row justify-content-center>-->
+            <!--<ion-col  size="4">-->
+                <!--<img src="{{imgs[3]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col  size="4">-->
+                <!--<img src="{{imgs[3]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col  size="4">-->
+                <!--<img src="{{imgs[3]}}">-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+
+        <!--<ion-row justify-content-center>-->
+        <!--</ion-row>-->
+        <!--<ion-row justify-content-center>-->
+        <!--</ion-row>-->
+
+        <!--<ion-row justify-content-center>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[4]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[4]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[4]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[4]}}">-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+
+        <!--<ion-row justify-content-center>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[5]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[5]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[5]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[5]}}">-->
+            <!--</ion-col>-->
+            <!--<ion-col size="4">-->
+                <!--<img src="{{imgs[5]}}">-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+    <!--</ion-grid>-->
+    <ion-grid>
+        <ion-row justify-content-center *ngFor="let line of display">
+            <ion-col size="4" *ngFor="let img of line">
+                <img src="{{img}}">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 </ion-content>
