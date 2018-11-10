@@ -22,10 +22,18 @@ import {Piece, Position} from './piece';
 import {debugMatrix, debugMatrixArray} from './matrix';
 
 export class ArrangementService {
+    private _pieces : Piece[];
+
 
     public getArrangement(pieces: Piece[], k: number): any[] {
+        this._pieces = pieces;
+
+        let pieceIndexes: number[] = [];
+        for (let i=0; i < pieces.length; ++i)
+            pieceIndexes.push(i);
+
         let result = [];
-        this.arrange(pieces, k, [], result);
+        this.arrange(pieceIndexes, k, [], result);
         return result;
     }
 
@@ -35,14 +43,14 @@ export class ArrangementService {
         } else {
             for (let i=0; i < remainList.length; ++i) {
 
-                let piece: Piece = remainList[i];
+                let piece: Piece = this._pieces[remainList[i]];
                 let positionCount = piece.getPositionCount();
 
                 for (let r=0; r < positionCount; ++r) {
                     let newFixedList = fixedList.slice();
                     let newRemainList = remainList.slice();
 
-                    let position: Position = <Position>{piece: piece, rotation: r};
+                    let position: Position = <Position>{piece: remainList[i], rotation: r};
 
                     newFixedList.push(position);
                     newRemainList.splice(i, 1);

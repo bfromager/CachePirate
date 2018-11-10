@@ -28,7 +28,6 @@ export class SolutionsService {
                         this.maxImage = n;
                 }
         }
-        alert(this.maxImage);
     }
 
     public getSolutions(): Solution[]{
@@ -52,7 +51,8 @@ export class SolutionsService {
             let positionPlateau: Case[] = [];
             let imageCount: number[] = [];
             for (let i in cases) {
-                let mask = a[i].piece.getMask(a[i].rotation);
+                let piece: Piece = this.pieces[a[i].piece];
+                let mask = piece.getMask(a[i].rotation);
                 positionPlateau.push(this.maskCase(cases[i], mask));
             }
             // debugMatrixArray(positionPlateau);
