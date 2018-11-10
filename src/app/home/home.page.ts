@@ -62,16 +62,16 @@ export class HomePage {
         );
 
         let pieces: Piece[] = [
-            // new Piece([[1,0,0], [0,8,0], [0,0,1]]),
-            // new Piece([[1,0,0], [0,8,0], [0,0,1]]),
-            new Piece([[1,0,0], [0,8,0], [0,0,0]]),
-            new Piece([[1,0,0], [0,8,0], [0,0,0]]),
-            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
-            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
-            // new Piece([[1,0,0], [0,8,0], [0,0,0]]),
+            new Piece([[true,false,false], [false,true,false], [false,false,true]]),
+            new Piece([[true,false,false], [false,true,false], [false,false,false]]),
+            // new Piece([[true,false,false], [false,true,false], [false,false,false]]),
+            // new Piece([[true,false,false], [false,true,false], [false,false,false]]),
         ];
 
+        // debugMatrixArray(pieces[0].getPositions());
+
         let solutionsService = new SolutionsService(plateau,pieces);
+        solutionsService.getSolutions();
 
     }
 }

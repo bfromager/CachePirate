@@ -18,7 +18,8 @@ arrangements("", (1,2,3,4,5,6), 3);
 
 */
 
-import {Mask, Piece} from './piece';
+import {Piece} from './piece';
+import {Position} from './position.interface';
 import {debugMatrix, debugMatrixArray} from './matrix';
 
 export class ArrangementService {
@@ -29,21 +30,25 @@ export class ArrangementService {
         return result;
     }
 
-    private arrange(remainList: any[], k, usedList: any[], resultList: any[]) {
+    private arrange(remainList: any[], k, fixedList: any[], resultList: any[]) {
         if (k == 0) {
-            resultList.push(usedList);
+            resultList.push(fixedList);
         } else {
-            for (let p=0; p < remainList.length; ++p) {
-                let masks : Mask[] = remainList[p].getPositions();
-                for (let r=0; r < masks.length; ++r) {
-                    let newUsedList = usedList.slice();
+            for (let i=0; i < remainList.length; ++i) {
+
+                let piece: Piece = remainList[i];
+                let positionCount = piece.getPositionCount();
+
+                for (let r=0; r < positionCount; ++r) {
+                    let newFixedList = fixedList.slice();
                     let newRemainList = remainList.slice();
 
-                    // newUsedList.push(remainList[p]);
-                    newUsedList.push(masks[r]);
-                    newRemainList.splice(p, 1);
+                    let position: Position = <Position>{piece: piece, rotation: r};
 
-                    this.arrange(newRemainList, k - 1, newUsedList, resultList);
+                    newFixedList.push(position);
+                    newRemainList.splice(i, 1);
+
+                    this.arrange(newRemainList, k - 1, newFixedList, resultList);
                 }
             }
         }

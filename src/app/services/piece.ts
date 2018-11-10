@@ -7,7 +7,7 @@
 
 import {compareMatrix, debugMatrix, Matrix, rotateMatrix} from './matrix';
 
-export type Mask = Matrix<number>;
+export type Mask = Matrix<boolean>;
 
 export class Piece {
     private _mask: Mask;
@@ -17,8 +17,16 @@ export class Piece {
         if (mask) this.setMask(mask);
     }
 
-    getPositions(): Mask[] {
+    getMasks(): Mask[] {
         return this._positions.slice();
+    }
+
+    getMask(p: number): Mask {
+        return this._positions[p];
+    }
+
+    getPositionCount(): number {
+        return this._positions.length;
     }
 
     setMask(mask : Mask)  {
