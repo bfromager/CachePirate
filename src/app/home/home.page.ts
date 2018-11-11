@@ -98,8 +98,8 @@ export class HomePage {
         console.log(currentProblem);
     }
 
-    contentClick() {
-        //alert("click");
+    refresh(event) {
         this.updateDisplay()
+        event.target.complete();
     }
 }

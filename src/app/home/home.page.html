@@ -1,93 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="120" pullMax="240">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            refreshingSpinner="circles"
+        >
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-grid style="height: 100%">
+        <ion-row align-items-center style="height:100%">
+            <ion-col>
 
-<ion-content (click)="contentClick()">
-    <!--<img src="{{imgs[1]}}"><br>-->
-    <!--<img src="{{imgs[2]}}"><br>-->
-    <!--<img src="{{imgs[3]}}"><br>-->
-    <!--<img src="{{imgs[4]}}"><br>-->
-    <!--<img src="{{imgs[5]}}"><br>-->
+                    <ion-row justify-content-center *ngFor="let line of display">
+                        <ion-col size="4" *ngFor="let img of line">
+                            <img src="{{img}}">
+                        </ion-col>
+                    </ion-row>
 
-    <!--<ion-grid>-->
-        <!--<ion-row justify-content-center >-->
-            <!--<ion-col size="4">-->
-                    <!--<img src="{{imgs[1]}}">-->
-            <!--</ion-col>-->
-        <!--</ion-row>-->
-
-        <!--<ion-row justify-content-center>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[2]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[2]}}">-->
-            <!--</ion-col>-->
-        <!--</ion-row>-->
-
-        <!--<ion-row justify-content-center>-->
-            <!--<ion-col  size="4">-->
-                <!--<img src="{{imgs[3]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col  size="4">-->
-                <!--<img src="{{imgs[3]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col  size="4">-->
-                <!--<img src="{{imgs[3]}}">-->
-            <!--</ion-col>-->
-        <!--</ion-row>-->
-
-        <!--<ion-row justify-content-center>-->
-        <!--</ion-row>-->
-        <!--<ion-row justify-content-center>-->
-        <!--</ion-row>-->
-
-        <!--<ion-row justify-content-center>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[4]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[4]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[4]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[4]}}">-->
-            <!--</ion-col>-->
-        <!--</ion-row>-->
-
-        <!--<ion-row justify-content-center>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[5]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[5]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[5]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[5]}}">-->
-            <!--</ion-col>-->
-            <!--<ion-col size="4">-->
-                <!--<img src="{{imgs[5]}}">-->
-            <!--</ion-col>-->
-        <!--</ion-row>-->
-    <!--</ion-grid>-->
-    <ion-grid>
-        <ion-row justify-content-center *ngFor="let line of display">
-            <ion-col size="4" *ngFor="let img of line">
-                <img src="{{img}}">
             </ion-col>
         </ion-row>
     </ion-grid>
-
 </ion-content>
