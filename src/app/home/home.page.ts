@@ -45,46 +45,74 @@ export class HomePage {
         ]
     ]);
 
-    private _pieces: Piece[] = [
+    private _availPieces: Piece[] = [
+        //-- 0 -----
         new Piece([
-            [true,false,false],
-            [false,false,false],
-            [false,false,false]
+            [false,false,false],        //  X X X
+            [false,false,false],        //  X X X
+            [false,false,false]         //  X X X
+        ]),
+
+        //-- 1 ----
+        new Piece([
+            [true,false,false],         //    X X
+            [false,false,false],        //  X X X
+            [false,false,false]         //  X X X
         ]),
         new Piece([
-            [true,false,false],
-            [false,false,false],
-            [false,false,true]
+            [false,false,false],        //  X X X
+            [false,true,false],         //  X   X
+            [false,false,false]         //  X X X
+        ]),
+
+        //-- 2 ----
+        new Piece([
+            [true,false,true],          //    X
+            [false,false,false],        //  X X X
+            [false,false,false]         //  X X X
         ]),
         new Piece([
-            [true,false,true],
-            [false,false,false],
-            [false,false,false]
+            [true,false,false],         //    X X
+            [false,false,false],        //  X X X
+            [false,false,true]          //  X X
         ]),
         new Piece([
-            [true,false,false],
-            [false,true,false],
-            [false,false,false]
+            [true,false,false],         //    X X
+            [false,true,false],         //  X   X
+            [false,false,false]         //  X X X
         ]),
-        // new Piece([
-        //     [true,false,true],
-        //     [false,false,false],
-        //     [true,false,false]
-        // ]),
+
+        //-- 3 ----
+        new Piece([
+            [true,false,true],          //    X
+            [false,false,false],        //  X X X
+            [true,false,false]          //    X X
+        ]),
     ];
+    private _pieces: Piece[] = []
 
     private _uniqueSolutions: Solution[] = []
     private _problems: Solution[] = []
     public display: string[][];
 
     constructor() {
+        this._pieces = [
+            this._availPieces[1],
+            this._availPieces[3],
+            this._availPieces[4],
+            this._availPieces[5],
+        ];
+        this.generateProblems();
+    }
+
+    private generateProblems() {
         let solutionsService = new SolutionsService(this._plateau,this._pieces);
         this._uniqueSolutions = solutionsService.getSolutions();
-        console.log(this._uniqueSolutions);
+        console.log(this._uniqueSolutions.length);
         this.updateDisplay();
     }
 
-    initProblems() {
+    private initProblems() {
         for (let p of this._uniqueSolutions)
             this._problems.push(p);
 
