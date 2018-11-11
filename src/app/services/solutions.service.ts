@@ -4,6 +4,7 @@ import {ArrangementService} from './arrangements.service';
 import {Case, Plateau} from './plateau';
 import {Mask, Position, Piece} from './piece';
 import {debugMatrix, debugMatrixArray, Matrix} from './matrix';
+import {compareArray} from './array';
 
 export interface Solution {
     imagesCount: number[],
@@ -111,19 +112,9 @@ export class SolutionsService {
         return result;
     }
 
-    private compareArray(a1: any[], a2: any[]): boolean {
-        if (a1.length != a2.length) return false;
-
-        for (let i in a1) {
-            if (a1[i] != a2[i])
-                return false;
-        }
-        return true;
-    }
-
     private pushSolution(solution : Solution, solutionCounter: SolutionCounter[]) {
         for (let s of solutionCounter) {
-            if (this.compareArray(solution.imagesCount, s.solutions[0].imagesCount)) {
+            if (compareArray(solution.imagesCount, s.solutions[0].imagesCount)) {
                 s.solutions.push(solution);
                 return;
             }

@@ -9,6 +9,7 @@ import {Plateau} from '../services/plateau';
 import {compareMatrix, debugMatrix, debugMatrixArray, Matrix, rotateMatrix} from '../services/matrix';
 import {ArrangementService} from '../services/arrangements.service';
 import {Solution, SolutionsService} from '../services/solutions.service';
+import {shuffleArray} from '../services/array';
 
 @Component({
   selector: 'app-home',
@@ -73,6 +74,7 @@ export class HomePage {
     ];
 
     private _uniqueSolutions: Solution[] = []
+    private _problems: Solution[] = []
     public display: string[][];
 
     constructor() {
@@ -82,18 +84,32 @@ export class HomePage {
         this.updateDisplay();
     }
 
+    initProblems() {
+        for (let p of this._uniqueSolutions)
+            this._problems.push(p);
+
+        shuffleArray(this._problems);
+    }
+
     updateDisplay() {
-        let currentProblem = this._uniqueSolutions[Math.floor( Math.random() * this._uniqueSolutions.length )];
-        this.display = [];
+        if (this._problems.length == 0) this.initProblems();
+
+        let currentProblem = this._problems.shift();
+        let imgs = [];
         for (let i=1; i < currentProblem.imagesCount.length; ++i) {
             let count = currentProblem.imagesCount[i];
             if (count != 0) {
                 let line = [];
                 for (let j = 0; j< count; ++j )
                     line.push(this.imgs[i]);
-                this.display.push(line);
+                imgs.push(line);
             }
         }
+        shuffleArray(imgs);
+        this.display = [];
+        for (let line of imgs)
+            this.display.push(line);
+
         // console.log(this.display);
         console.log(currentProblem);
     }
